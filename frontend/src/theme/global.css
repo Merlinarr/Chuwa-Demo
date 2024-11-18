@@ -1,0 +1,52 @@
+/* editor */
+@import 'react-quill/dist/quill.snow.css';
+
+/* simplebar */
+@import 'simplebar-react/dist/simplebar.min.css';
+
+/* 将 Tailwind CSS 的基础样式（也称为 "base" 样式）导入到当前文件中，包括一些基本的 HTML 元素样式、重置元素默认样式等。 */
+@import 'tailwindcss/base';
+
+/* 导入 Tailwind CSS 的组件样式，包括预定义的按钮、表格、表单、卡片等组件样式。 */
+@import 'tailwindcss/components';
+
+/* 导入 Tailwind CSS 的实用类，这些类通常用于添加与布局、间距、响应式设计等相关的样式，使得可以快速构建出复杂的页面 */
+@import 'tailwindcss/utilities';
+
+body {
+  font-family: 'Inter';
+}
+
+.custom-placeholder-input .ant-input-search-button:not(.ant-btn-primary) {
+  color: #979797 !important;
+}
+.custom-placeholder-input .ant-input-outlined:focus {
+  box-shadow: none;
+}
+
+.ant-btn {
+  box-shadow: none !important;
+}
+
+.ant-pagination-item {
+  /* margin-inline-end: 0 !important; */
+  border: 1px solid #ccc !important;
+}
+.ant-pagination-item-active a {
+  color: #fff !important;
+}
+
+.ant-modal .ant-modal-content {
+  border-radius: 0px !important;
+  padding: 0px !important;
+}
+
+.empty-card-bg {
+  background-size: 304px 228px;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 50%;
+  margin: 0 auto;
+  background-image: url('../assets/image/emptyCart.png');
+}
