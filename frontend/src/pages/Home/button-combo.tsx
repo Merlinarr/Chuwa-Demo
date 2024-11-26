@@ -10,7 +10,12 @@ const ButtonCombo = (props: { product: Product }) => {
   return (
     <Row gutter={8}>
       <Col flex="auto">
-        <CountButton product={product} />
+        <CountButton
+          product={product}
+          buttonStyle={{
+            padding: '5px 0px',
+          }}
+        />
       </Col>
       {userInfo.role == UserRole.ADMIN && (
         <Col span={12}>

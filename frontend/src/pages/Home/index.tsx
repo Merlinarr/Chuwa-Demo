@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import CardView from './card';
 import { Row, Col } from 'antd';
 import HomeHeader from './header';
@@ -9,6 +9,7 @@ import { Product } from '#/entity';
 import DemoService from '@/api/services/demoService';
 import { GetProductListParams } from '#/api';
 import { setCart, setTotal } from '@/store/shopping';
+import { clearUserInfoAndToken } from '@/store/users/userSlice';
 export default function HomePage() {
   const dispatch = useAppDispatch();
   const [Products, setProducts] = useState<Product[]>([]);
@@ -29,10 +30,14 @@ export default function HomePage() {
   }, [searchParams]);
   useEffect(() => {
     if (userToken) {
-      DemoService.getCartAction().then((res) => {
-        let newCart = res.data;
-        dispatch(setCart(newCart));
-      });
+      DemoService.getCartAction()
+        .then((res) => {
+          let newCart = res.data;
+          dispatch(setCart(newCart));
+        })
+        .catch((error) => {
+          error.status == 403 && dispatch(clearUserInfoAndToken());
+        });
     }
   }, [userToken]);
   return (
@@ -41,12 +46,12 @@ export default function HomePage() {
         <HomeHeader />
       </div>
       <div className="bg-white px-3 py-6">
-        <Row justify="start" gutter={[4, 20]}>
+        <Row justify="start" gutter={[15, 20]}>
           {Products.map((x, i) => {
             return isMaxScreen ? (
               <Col
                 key={i}
-                className="flex justify-center"
+                className="flex h-full justify-center"
                 style={{ flexBasis: '20%', maxWidth: '20%' }}
               >
                 <CardView product={x} />

@@ -31,8 +31,8 @@ axiosInstance.interceptors.response.use(
   },
   (error: AxiosError<Result>) => {
     const { response } = error || {};
-    const errMsg = response?.data?.data || '';
-    Message.error(errMsg);
+    const errMsg = response?.data || '';
+    Message.error(errMsg as any);
     return Promise.reject(error);
   },
 );
